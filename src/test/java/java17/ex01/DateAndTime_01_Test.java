@@ -18,13 +18,18 @@ public class DateAndTime_01_Test {
 	public void test_date() {
 
 		// TODO modifier les paramètres du constructeur pour que le test soit passant
-		Date date = new Date(0, 0, 0, 0, 0, 0);
+		Date date = new Date(117, 2, 24, 1, 2, 3);
 
 		assertThat(date.toString(), is("Fri Mar 24 01:02:03 CET 2017"));
 
 		// TODO modifier le jour de la date avec une méthode set pour que le test soit
 		// passant
 
+		Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.DAY_OF_MONTH, 1); // Ajoute un jour
+        date = calendar.getTime();
+        
 		assertThat(date.toString(), is("Sat Mar 25 01:02:03 CET 2017"));
 	}
 
@@ -34,12 +39,14 @@ public class DateAndTime_01_Test {
 	public void test_calendar() throws Exception {
 		Calendar calendar = Calendar.getInstance();
 
+		calendar.setTime(new Date(117, 2, 24, 1, 2, 3));
 		// TODO modifier l'objet calendar pour que le test soit passant
 
 		assertThat(calendar.getTime().toString(), is("Fri Mar 24 01:02:03 CET 2017"));
 
 		// calendar est mutable... :-(
 		// TODO modifier l'objet calendar pour que le test soit passant
+		calendar.add(Calendar.DAY_OF_MONTH, 1); // Ajoute un jour
 
 		assertThat(calendar.getTime().toString(), is("Sat Mar 25 01:02:03 CET 2017"));
 	}
